@@ -10,8 +10,10 @@ def index(request):
     cities = City.objects.all()
 
     if request.method == 'POST':
-        pass
-    form = CityForm
+        form = CityForm(request.POST)
+        form.save()
+
+    form = CityForm()
     weather_data = []
 
     for city in cities:
