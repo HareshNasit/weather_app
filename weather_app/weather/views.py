@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from .models import City
 from .forms import CityForm
@@ -9,6 +9,8 @@ def index(request):
     # city = 'Ahmedabad'
     cities = City.objects.all()
     err_msg = ''
+    message = ''
+    message_class = ''
     if request.method == 'POST':
 
         form = CityForm(request.POST)
@@ -23,7 +25,12 @@ def index(request):
                     err_msg = "City does not exist in the world"
             else:
                 err_msg = 'City already exists in the database'
-
+        if err_msg:
+            message = err_msg
+            message_class = 'is-danger'
+        else:
+            message = 'City added successfully!'
+            message_class = 'is-success'
     print(err_msg)
     form = CityForm()
     weather_data = []
@@ -38,5 +45,14 @@ def index(request):
         }
         weather_data.append(city_weather)
     # print(weather_data)
-    context  = {'weather_data': weather_data, 'form': form}
+    context  = {
+        'weather_data': weather_data,
+        'form': form,
+        'message': message,
+        'message_class': message_class
+    }
     return render(request, 'weather/weather.html', context)
+
+def delete_city(request, city_name):
+    City.objects.get(name=city_name).delete()
+    return redirect('home')
