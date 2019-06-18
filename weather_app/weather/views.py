@@ -12,7 +12,6 @@ def index(request):
     message = ''
     message_class = ''
     if request.method == 'POST':
-
         form = CityForm(request.POST)
         if form.is_valid():
             new_city = form.cleaned_data['name']
@@ -31,7 +30,6 @@ def index(request):
         else:
             message = 'City added successfully!'
             message_class = 'is-success'
-    print(err_msg)
     form = CityForm()
     weather_data = []
 
@@ -44,7 +42,6 @@ def index(request):
             'icon': r['weather'][0]['icon']
         }
         weather_data.append(city_weather)
-    # print(weather_data)
     context  = {
         'weather_data': weather_data,
         'form': form,
