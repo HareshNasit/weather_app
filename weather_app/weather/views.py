@@ -6,7 +6,6 @@ from .forms import CityForm
 
 def index(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=de144db93b695a9bfe6425d504b7a595'
-    # city = 'Ahmedabad'
     cities = City.objects.all()
     err_msg = ''
     message = ''
@@ -30,6 +29,7 @@ def index(request):
         else:
             message = 'City added successfully!'
             message_class = 'is-success'
+    print(err_msg)
     form = CityForm()
     weather_data = []
 
@@ -42,6 +42,7 @@ def index(request):
             'icon': r['weather'][0]['icon']
         }
         weather_data.append(city_weather)
+    # print(weather_data)
     context  = {
         'weather_data': weather_data,
         'form': form,
