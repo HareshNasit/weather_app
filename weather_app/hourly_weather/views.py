@@ -21,10 +21,11 @@ def hourly_view(request, *args, **kwargs):
         each_hour = {
         'date': date_time[0],
         'time': date_time[1],
-        'temperature': hour['main']['temp']
+        'temperature': hour['main']['temp'],
+        'icon': hour['weather'][0]['icon']
         }
         hourly_updates.append(each_hour)
     print(hourly_updates)
         # print(hour['dt_txt'])
         # print(hour['main']['temp'])
-    return render(request, "hourly.html", {})
+    return render(request, "hourly.html", {'hourly_data': hourly_updates})
