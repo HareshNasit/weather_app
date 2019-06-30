@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hourly Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
   </head>
   <body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Weather Forecast
+                </h1>
+            </div>
+        </div>
+    </section>
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -20,10 +32,10 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <span class="title">{{city_weather.date}}</span>
+                                        <span class="title">{{city_weather.time}}</span>
                                         <br>
                                         <span class="subtitle">{{city_weather.temperature}} C</span>
-                                        <br>{{city_weather.time}}
+                                        <br>{{city_weather.description}}
                                     </p>
                                 </div>
                             </div>

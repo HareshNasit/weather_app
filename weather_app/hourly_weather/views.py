@@ -22,7 +22,8 @@ def hourly_view(request, *args, **kwargs):
         'date': date_time[0],
         'time': date_time[1],
         'temperature': hour['main']['temp'],
-        'icon': hour['weather'][0]['icon']
+        'icon': hour['weather'][0]['icon'],
+        'description': hour['weather'][0]['description']
         }
         hourly_updates.append(each_hour)
     print(hourly_updates)
