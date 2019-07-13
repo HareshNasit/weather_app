@@ -9,24 +9,21 @@ def hourly_view(request, *args, **kwargs):
 
 
     cities = City.objects.all()
-    print(cities)
-
-    # for new_city in cities:
-    #     r = requests.get(url.format(new_city)).json()
-    #     print(r['list'][0]['dt_txt'])
     r = requests.get(url.format(cities[0])).json()
     hourly_updates = []
     for hour in r['list']:
         date_time = hour['dt_txt'].split(" ")
+        time = date_time[1]
+        if int(time[:2]) < 12:
+            time += " AM"
+        else:
+            time += " PM"
         each_hour = {
         'date': date_time[0],
-        'time': date_time[1],
+        'time': time,
         'temperature': hour['main']['temp'],
         'icon': hour['weather'][0]['icon'],
         'description': hour['weather'][0]['description']
         }
         hourly_updates.append(each_hour)
-    print(hourly_updates)
-        # print(hour['dt_txt'])
-        # print(hour['main']['temp'])
     return render(request, "hourly.html", {'hourly_data': hourly_updates})
