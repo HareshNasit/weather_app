@@ -10,6 +10,9 @@ def index(request):
     err_msg = ''
     message = ''
     message_class = ''
+    ip_info = requests.get('https://ipinfo.io/')
+    information = ip_info.json()
+    print(information['city'])
     if request.method == 'POST':
         form = CityForm(request.POST)
         if form.is_valid():
