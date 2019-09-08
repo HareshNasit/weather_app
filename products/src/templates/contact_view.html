@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Contact View</h1>
+  {{request.user.is_authenticated}}
+  <p>This is a Template </p>
+  <p>
+    {{ Shoes }}, {{ Size }}
+    {{ Types }}
+  </p>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+  <ul>
+    {% for my_sub_item in Types %}
+        <li>{{my_sub_item}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
