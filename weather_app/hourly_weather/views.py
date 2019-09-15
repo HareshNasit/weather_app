@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from weather.models import City
 import requests
+import time
 
 # Create your views here.
 def hourly_view(request, *args, **kwargs):
@@ -11,13 +12,12 @@ def hourly_view(request, *args, **kwargs):
     cities = City.objects.all()
     r = requests.get(url.format(kwargs['city'])).json()
     hourly_updates = []
+
     for hour in r['list']:
         date_time = hour['dt_txt'].split(" ")
+        print(date_time)
         time = date_time[1]
-        if int(time[:2]) < 12:
-            time += " AM"
-        else:
-            time += " PM"
+
         each_hour = {
         'date': date_time[0],
         'time': time,
