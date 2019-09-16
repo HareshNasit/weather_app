@@ -1,2 +1,3 @@
 # weather_app
-A web app that shows the weather of any city when entered. It is made using Django python.
+A web app made using python framework Django that shows the current weather of any city entered. 
+It also shows the hourly weather forecast for the next 5 days for a particular city.
